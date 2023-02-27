@@ -1,0 +1,28 @@
+[{
+  "CLASSNAME": "Payment",
+  "Instance": {
+    "date": "1",
+    "description": "18",
+    "amount": 50.0,
+    "incomingInterest": 0.0,
+    "outcomingInterest": 0.0
+  }
+},{
+  "CLASSNAME": "Payment",
+  "Instance": {
+    "date": "14",
+    "description": "17",
+    "amount": 50.0,
+    "incomingInterest": 0.0,
+    "outcomingInterest": 0.0
+  }
+},{
+  "CLASSNAME": "Payment",
+  "Instance": {
+    "date": "51",
+    "description": "16",
+    "amount": 50.0,
+    "incomingInterest": 0.0,
+    "outcomingInterest": 0.0
+  }
+}]

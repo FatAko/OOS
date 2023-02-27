@@ -1,0 +1,151 @@
+@startuml
+interface CalculateBill {
+    + double calculate();
+}
+
+abstract class Transaction implements CalculateBill {
+    # String date;
+    # double amount;
+    # String description;
+    + String getDate();
+    + double getAmount();
+    + String getDescription();
+    + void setDate(String date);
+    + void setAmount(double amount);
+    + void setDescription(String description);
+    + String toString();
+    + boolean equals(Transaction obj);
+}
+class Payment extends Transaction {
+    - double incomingInterest;
+    - double outgoingInterest;
+    + Payment(String date, double amount, String description);
+    + Payment(String date, double amount, String description, double incomingInterest, double outgoingInterest);
+    + Payment(Payment orig);
+    + double getIncomingInterest();
+    + double getOutgoingInterest();
+    + void setIncomingInterest(double incomingInterest);
+    + void setOutgoingInterest(double outgoingInterest);
+    + double calculate();
+    + String toString();
+    + boolean equals(Payment obj);
+}
+class Transfer extends Transaction {
+    - String sender;
+    - String recipient;
+    + Transfer(String date, double amount, String description);
+    + Transfer(String date, double amount, String description, String sender, String recipient);
+    + Transfer(Transfer orig);
+    + String getRecipient();
+    + String getSender();
+    + void setSender(String sender);
+    + void setRecipient(String recipient);
+    + double calculate();
+    + String toString();
+    + boolean equals(Transfer obj);
+}
+interface Bank {
+    + void createAccount(String account) throws AccountAlreadyExistsException;
+    + void createAccount(String account, List<Transaction> transactions) throws AccountAlreadyExistsException;
+    + void addTransaction(String account, Transaction transaction) throws TransactionAlreadyExistException, AccountDoesNotExistException;
+    + void removeTransaction(String account, Transaction transaction) throws TransactionDoesNotExistException;
+    + boolean containsTransaction(String account, Transaction transaction);
+    + double getAccountBalance(String account);
+    + List<Transaction> getTransactions(String account);
+    + List<Transaction> getTransactionsSorted(String account, boolean asc);
+    + List<Transaction> getTransactionsByType(String account, boolean positive);
+}
+class PrivateBank implements Bank {
+    + PrivateBank(String pName, double pIncomingInterest, double pOutgoingInterest)
+    + PrivateBank(PrivateBank pOrig)
+    # String name;
+    # double incomingInterest;
+    # double outgoingInterest;
+    # Map<String, List<Transaction>> accountsToTransactions = new HashMap<String, List<Transaction>>();
+    + void setName(String pName)
+    + String getName()
+    + void setIncomingInterest(double incomingInterest)
+    + double getIncomingInterest()
+    + void setOutgoingInterest(double outgoingInterest)
+    + double getOutgoingInterest()
+    + void setAccountsToTransactions(Map<String, List<Transaction>> accountsToTransactions)
+    + Map<String, List<Transaction>> getAccountsToTransactions()
+    + String toString()
+    + boolean equals(Object obj)
+    + void createAccount(String account) throws AccountAlreadyExistsException
+    + void createAccount(String account, List<Transaction> transactions) throws AccountAlreadyExistsException
+    + void addTransaction(String account, Transaction transaction) throws TransactionAlreadyExistException, AccountDoesNotExistException
+    + void removeTransaction(String account, Transaction transaction) throws TransactionDoesNotExistException
+    + boolean containsTransaction(String account, Transaction transaction)
+    + double getAccountBalance(String account)
+    + List<Transaction> getTransactions(String account)
+    + List<Transaction> getTransactionsSorted(String account, boolean asc)
+    + List<Transaction> getTransactionsByType(String account, boolean positive)
+}
+class IncomingTransfer extends Transfer{
+    + IncomingTransfer(String date, double amount, String description)
+    + IncomingTransfer(String date, double amount, String description, String sender, String recipient)
+    + IncomingTransfer(Transfer orig)
+    + double calculate()
+}
+class OutgoingTransfer extends Transfer{
+    + OutgoingTransfer(String date, double amount, String description)
+    + OutgoingTransfer(String date, double amount, String description, String sender, String recipient)
+    + OutgoingTransfer(Transfer orig)
+    + double calculate()
+}
+class AccountAlreadyExistsException extends Exception {
+    + AccountAlreadyExistsException(String ausgabe)
+}
+class AccountDoesNotExistException extends Exception {
+    + AccountDoesNotExistException(String ausgabe)
+}
+class TransactionAlreadyExistException extends Exception {
+    + TransactionAlreadyExistException(String ausgabe)
+}
+class TransactionDoesNotExistException extends Exception {
+    + TransactionDoesNotExistException(String ausgabe)
+}
+class CustomSerializerDeserializer implements JsonSerializer, JsonDeserializer{
+    - List<Transaction> lt
+    + List<Transaction> getTransactions()
+    + void cleanAdapter()
+    + JsonElement serialize(Transaction transaction, Type type, JsonSerializationContext jsonSerializationContext)
+    + Transaction deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException
+}
+
+class PaymentTest {
+    void init()
+    void copyConstructorTest()
+    void calculateTest()
+    void equalsTest()
+    void toStringTest()
+}
+class PrivateBankTest {
+
+    void init() throws AccountAlreadyExistsException
+    void reset()
+    void getNameTest()
+    void setNameTest()
+    void getIncomingTest()
+    void setIncomingTest()
+    void getOutgoingTest()
+    void setOutgoingTest()
+    void createAccountTest()
+    void addTransactionTest()
+    void removeTransactionTest()
+    void containsTransactionTest()
+    void getAccountBalanceTest()
+    void getTransactionsTest()
+    void getTransactionsSortedTest()
+    void getTransactionsByType()
+    void containsJsonTest(String p)
+}
+class TransferTest {
+    void init()
+    void copyConstructorTest()
+    void calculateTest()
+    void equalsTest()
+    void toStringTest()
+}
+@enduml

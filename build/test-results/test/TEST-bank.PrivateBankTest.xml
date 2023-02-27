@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="bank.PrivateBankTest" tests="15" skipped="0" failures="0" errors="0" timestamp="2021-12-13T10:09:27" hostname="DESKTOP-B0T8GTI" time="0.132">
+  <properties/>
+  <testcase name="getTransactionsSortedTest()" classname="bank.PrivateBankTest" time="0.025"/>
+  <testcase name="getOutgoingTest()" classname="bank.PrivateBankTest" time="0.001"/>
+  <testcase name="getTransactionsByType()" classname="bank.PrivateBankTest" time="0.002"/>
+  <testcase name="getTransactionsTest()" classname="bank.PrivateBankTest" time="0.001"/>
+  <testcase name="setOutgoingTest()" classname="bank.PrivateBankTest" time="0.0"/>
+  <testcase name="setNameTest()" classname="bank.PrivateBankTest" time="0.001"/>
+  <testcase name="getNameTest()" classname="bank.PrivateBankTest" time="0.001"/>
+  <testcase name="getIncomingTest()" classname="bank.PrivateBankTest" time="0.001"/>
+  <testcase name="containsTransactionTest()" classname="bank.PrivateBankTest" time="0.002"/>
+  <testcase name="removeTransactionTest()" classname="bank.PrivateBankTest" time="0.001"/>
+  <testcase name="setIncomingTest()" classname="bank.PrivateBankTest" time="0.0"/>
+  <testcase name="addTransactionTest()" classname="bank.PrivateBankTest" time="0.001"/>
+  <testcase name="createAccountTest()" classname="bank.PrivateBankTest" time="0.001"/>
+  <testcase name="getAccountBalanceTest()" classname="bank.PrivateBankTest" time="0.001"/>
+  <testcase name="[1] Peter.json" classname="bank.PrivateBankTest" time="0.064"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
